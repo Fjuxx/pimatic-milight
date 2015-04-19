@@ -5,9 +5,10 @@
   "files": [
     "milight.coffee",
     "README.md",
-    "milight-config-schema.coffee"
+    "milight-config-schema.coffee",
+    "device-config-schema.coffee"
   ],
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "https://github.com/Fjuxx/pimatic-milight",
   "repository": {
     "type": "git",
