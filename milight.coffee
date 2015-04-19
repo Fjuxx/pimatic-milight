@@ -20,14 +20,16 @@ module.exports = (env) ->
   # Require the [cassert library](https://github.com/rhoot/cassert).
   assert = env.require 'cassert'
 
+  MilightLib = require 'milight'
+
   # Include you own depencies with nodes global require function:
   #  
   #     someThing = require 'someThing'
   #  
 
-  # ###MyPlugin class
+  # ###MilightPlugin class
   # Create a class that extends the Plugin class and implements the following functions:
-  class MyPlugin extends env.plugins.Plugin
+  class MilightPlugin extends env.plugins.Plugin
 
     # ####init()
     # The `init` function is called by the framework to ask your plugin to initialise.
@@ -40,10 +42,51 @@ module.exports = (env) ->
     #     
     # 
     init: (app, @framework, @config) =>
-      env.logger.info("Hello World")
+      env.logger.info("Milight plugin started")
+
+      deviceConfigDef = require("./device-config-schema")
+
+      @framework.deviceManager.registerDeviceClass("MilightRGBWZone", {
+        configDef: deviceConfigDef.MilightRGBWZone, 
+        createCallback: (config) => new MilightRGBWZone(config)
+      })
+
+  class MilightRGBWZone extends env.devices.DimmerActuator
+
+    constructor: (@config) ->
+      @name = @config.name
+      @id = @config.id
+      @ip = @config.ip
+      @port = @config.port
+      @zoneId = @config.zoneId
+      milightLib = new MilightLib
+        host: @ip
+        port: @port
+      @currZone = milightLib.zone @zoneId
+
+      super()
+
+    changeDimlevelTo: (dimlevel) ->
+      # change dim
+      if dimlevel > 0
+        @currZone.brightness dimlevel, (err) -> 
+          env.logger.debug "set dim to #{dimlevel}"
+      else
+        @currZone.off (err) ->
+          env.logger.debug "turned off"
+
+#    turnOn: -> @currZone.on
+
+#    turnOff: -> @currZone.off
+
+    changeStateTo: (state) ->
+      if state
+        @currZone.on
+      else
+        @currZone.off
 
   # ###Finally
   # Create a instance of my plugin
-  myPlugin = new MyPlugin
+  milightPlugin = new MilightPlugin
   # and return it to the framework.
-  return myPlugin
+  return milightPlugin

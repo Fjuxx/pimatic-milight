@@ -8,15 +8,16 @@
     "milight-config-schema.coffee"
   ],
   "version": "0.0.1",
-  "homepage": "http://your-plugin-website",
+  "homepage": "https://github.com/Fjuxx/pimatic-milight",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git://github.com/fjuxx/pimatic-plugin-template.git"
+    "url": "git://github.com/Fjuxx/pimatic-milight.git"
   },
   "configSchema": "milight-config-schema.coffee",
   "dependencies": {
-  },
+    "node-milight" : "git+https://github.com/Fjuxx/node-milight/"
+  },  
   "peerDependencies": {
     "pimatic": "0.8.*"
   },
