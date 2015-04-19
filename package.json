@@ -9,7 +9,6 @@
   ],
   "version": "0.0.1",
   "homepage": "https://github.com/Fjuxx/pimatic-milight",
-  "private": true,
   "repository": {
     "type": "git",
     "url": "git://github.com/Fjuxx/pimatic-milight.git"
