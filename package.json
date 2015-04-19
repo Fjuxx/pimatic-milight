@@ -1,0 +1,27 @@
+{ "name": "pimatic-milight",
+  "description": "Pimatic plugin for Milight",
+  "author": "Fjux (https://github.com/Fjuxx)",
+  "main": "milight",
+  "files": [
+    "milight.coffee",
+    "README.md",
+    "milight-config-schema.coffee"
+  ],
+  "version": "0.0.1",
+  "homepage": "http://your-plugin-website",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fjuxx/pimatic-plugin-template.git"
+  },
+  "configSchema": "milight-config-schema.coffee",
+  "dependencies": {
+  },
+  "peerDependencies": {
+    "pimatic": "0.8.*"
+  },
+  "engines": {
+    "node": ">0.8.x",
+    "npm": ">1.1.x"
+  }
+}
