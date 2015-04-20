@@ -68,22 +68,27 @@ module.exports = (env) ->
 
     changeDimlevelTo: (dimlevel) ->
       # change dim
+      @_setDimlevel(dimlevel)      
       if dimlevel > 0
         @currZone.brightness dimlevel, (err) -> 
           env.logger.debug "set dim to #{dimlevel}"
       else
         @currZone.off (err) ->
           env.logger.debug "turned off"
+      return Promise.resolve()
 
 #    turnOn: -> @currZone.on
 
 #    turnOff: -> @currZone.off
 
     changeStateTo: (state) ->
+      @_setState(state)
       if state
         @currZone.on
       else
         @currZone.off
+      return Promise.resolve()
+
 
   # ###Finally
   # Create a instance of my plugin
