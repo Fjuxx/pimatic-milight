@@ -14,6 +14,15 @@
     "type": "git",
     "url": "git://github.com/Fjuxx/pimatic-milight.git"
   },
+  "bugs": {
+    "url": "https://github.com/Fjuxx/pimatic-milight/issues"
+  },
+  "licenses": [
+    {
+      "type": "GPLv2",
+      "url": "https://github.com/Fjuxx/pimatic-milight/blob/master/LICENSE"
+    }
+  ],
   "configSchema": "milight-config-schema.coffee",
   "dependencies": {
     "node-milight" : "git+https://github.com/Fjuxx/node-milight/"
